@@ -1,4 +1,4 @@
-from .rag_utils import init_vector_store, process_question
+from .rag_utils import load_remote_vector_store, process_question
 
 from rxconfig import config
 
@@ -13,7 +13,7 @@ class State(rx.State):
     """The app state."""
 
     def load_engine(self):
-        init_vector_store()
+        load_remote_vector_store()
 
 
 def index() -> rx.Component:

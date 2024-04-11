@@ -1,26 +1,36 @@
-from llama_index.core import SimpleDirectoryReader, VectorStoreIndex
+import os
+
+import weaviate
+
+from llama_index.core import VectorStoreIndex
 from llama_index.core.base.base_query_engine import BaseQueryEngine
-from llama_index.core.chat_engine.types import ChatMode
-from llama_index.core.chat_engine import ContextChatEngine, CondenseQuestionChatEngine
+from llama_index.core.chat_engine import CondenseQuestionChatEngine
 from llama_index.core.base.llms.types import ChatMessage
+from llama_index.vector_stores.weaviate import WeaviateVectorStore
 
 from traceloop.sdk.decorators import workflow
 
+
 query_engine: BaseQueryEngine
 
+# Set these environment variables
+WCS_URL = os.getenv("WCS_URL")
+WCS_APIKEY = os.getenv("WCS_API_KEY", "")
 
-def init_vector_store(
-    directory_path: str = "/Users/martinxu9/code/reflex/examples/reflex-web",
-):
+INDEX_NAME = "ReflexLlamaindexTraceloopDemo"
+
+
+def load_remote_vector_store():
     global query_engine
-    documents = SimpleDirectoryReader(
-        input_dir=directory_path, recursive=True, required_exts=[".md"]
-    ).load_data()
-
-    print(f"Read number of docs from {directory_path}: {len(documents)}")
-
-    index = VectorStoreIndex.from_documents(documents)
-    query_engine = index.as_query_engine()
+    client = weaviate.Client(
+        url=WCS_URL, auth_client_secret=weaviate.AuthApiKey(api_key=WCS_APIKEY)
+    )
+    vector_store = WeaviateVectorStore(
+        weaviate_client=client,
+        index_name=INDEX_NAME,
+    )
+    loaded_index = VectorStoreIndex.from_vector_store(vector_store)
+    query_engine = loaded_index.as_query_engine()
 
 
 @workflow(name="reflex-chat-llamaindex-process-question")

@@ -11,7 +11,7 @@ reflex = "^0.4.7"
 llama-index = "^0.10.28"
 reflex-chat = "^0.0.1a4"
 traceloop-sdk = "^0.16.1"
-llama-index-readers-github = "^0.1.7"
+llama-index-vector-stores-weaviate = "^0.1.4"
 
 
 [build-system]
