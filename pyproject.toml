@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "chat-flexdown-llama-index"
+version = "0.1.0"
+description = ""
+authors = ["Martin Xu <15661672+martinxu9@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+reflex = "^0.4.7"
+llama-index = "^0.10.28"
+reflex-chat = "^0.0.1a4"
+traceloop-sdk = "^0.16.1"
+llama-index-readers-github = "^0.1.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
