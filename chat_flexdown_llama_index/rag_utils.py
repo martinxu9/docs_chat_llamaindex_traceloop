@@ -52,7 +52,7 @@ async def process_question(chat):
         verbose=True,
     )
 
-    # Workaround: get the question
+    # Workaround: get the question, which is the last user message.
     for message in chat.messages[::-1]:
         if message["role"] == "user":
             question = message["content"]

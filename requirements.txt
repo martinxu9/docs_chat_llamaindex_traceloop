@@ -1,3 +1,7 @@
-reflex==0.4.7
+reflex>=0.4.7
+langchain
 llama-index
 traceloop-sdk
+weaviate
+reflex-chat
+llama-index-vector-stores-weaviate
