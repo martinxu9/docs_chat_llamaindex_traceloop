@@ -17,7 +17,6 @@ langchain
 llama-index
 llama-index-vector-stores-weaviate
 traceloop-sdk
-weaviate
 ```
 
 ## Steps to Run
