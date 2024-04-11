@@ -4,6 +4,8 @@ from llama_index.core.chat_engine.types import ChatMode
 from llama_index.core.chat_engine import ContextChatEngine, CondenseQuestionChatEngine
 from llama_index.core.base.llms.types import ChatMessage
 
+from traceloop.sdk.decorators import workflow
+
 query_engine: BaseQueryEngine
 
 
@@ -21,6 +23,7 @@ def init_vector_store(
     query_engine = index.as_query_engine()
 
 
+@workflow(name="reflex-chat-llamaindex-process-question")
 async def process_question(chat):
     """Get the response from the API.
 

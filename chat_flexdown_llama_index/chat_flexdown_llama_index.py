@@ -4,6 +4,8 @@ from rxconfig import config
 
 from reflex_chat import chat
 
+from traceloop.sdk import Traceloop
+
 import reflex as rx
 
 
@@ -21,6 +23,7 @@ def index() -> rx.Component:
     )
 
 
+Traceloop.init()
 app = rx.App(theme=rx.theme(appearance="dark", accent_color="pink"))
 app.add_page(
     index,
