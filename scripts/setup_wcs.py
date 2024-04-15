@@ -7,6 +7,8 @@ from llama_index.vector_stores.weaviate import WeaviateVectorStore
 from llama_index.core.node_parser import LangchainNodeParser, MarkdownNodeParser
 from llama_index.core.ingestion import IngestionPipeline
 
+from langchain_text_splitters import MarkdownHeaderTextSplitter
+
 
 # Set these environment variables
 WCS_URL = os.getenv("WCS_URL")
@@ -34,8 +36,14 @@ vector_store = WeaviateVectorStore(
 
 
 # Use markdown splitter from LangChain instead of the defaults.
-markdown_parser = MarkdownNodeParser(include_metadata=True, include_prev_next_rel=True)
-langchain_parser = LangchainNodeParser(markdown_parser)
+headers_to_split_on = [
+    ("#", "Header 1"),
+    ("##", "Header 2"),
+    ("###", "Header 3"),
+]
+langchain_parser = LangchainNodeParser(
+    MarkdownHeaderTextSplitter(headers_to_split_on=headers_to_split_on)
+)
 pipeline = IngestionPipeline(
     transformations=[langchain_parser],
     vector_store=vector_store,
