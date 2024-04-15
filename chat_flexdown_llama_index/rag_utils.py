@@ -2,10 +2,11 @@ import os
 
 import weaviate
 
-from llama_index.core import VectorStoreIndex
+from llama_index.core import VectorStoreIndex, ServiceContext
 from llama_index.core.base.base_query_engine import BaseQueryEngine
 from llama_index.core.chat_engine import CondenseQuestionChatEngine
 from llama_index.core.base.llms.types import ChatMessage
+from llama_index.llms.openai import OpenAI
 from llama_index.vector_stores.weaviate import WeaviateVectorStore
 
 from traceloop.sdk.decorators import workflow
@@ -25,11 +26,15 @@ def load_remote_vector_store():
     client = weaviate.Client(
         url=WCS_URL, auth_client_secret=weaviate.AuthApiKey(api_key=WCS_APIKEY)
     )
+    llm = OpenAI(model="gpt-4-0125-preview")
+    service_context = ServiceContext.from_defaults(llm=llm)
     vector_store = WeaviateVectorStore(
         weaviate_client=client,
         index_name=INDEX_NAME,
     )
-    loaded_index = VectorStoreIndex.from_vector_store(vector_store)
+    loaded_index = VectorStoreIndex.from_vector_store(
+        vector_store, service_context=service_context
+    )
     query_engine = loaded_index.as_query_engine()
 
 
