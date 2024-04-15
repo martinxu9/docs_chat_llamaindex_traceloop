@@ -2,5 +2,5 @@ reflex>=0.4.7
 langchain
 llama-index
 traceloop-sdk
-reflex-chat
+reflex-chat>=0.0.1a6
 llama-index-vector-stores-weaviate

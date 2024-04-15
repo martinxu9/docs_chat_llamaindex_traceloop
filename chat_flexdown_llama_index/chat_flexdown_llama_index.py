@@ -24,7 +24,7 @@ def index() -> rx.Component:
 
 
 Traceloop.init()
-app = rx.App(theme=rx.theme(appearance="light", accent_color="purple"))
+app = rx.App(theme=rx.theme(appearance="dark", accent_color="sky"))
 app.add_page(
     index,
     title="Chat with docs | Reflex",

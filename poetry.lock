@@ -3212,17 +3212,17 @@ wrapt = {version = ">=1.14.0,<2.0", markers = "python_version >= \"3.11\""}
 
 [[package]]
 name = "reflex-chat"
-version = "0.0.1a4"
+version = "0.0.1a6"
 description = "Reflex custom component chat"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "reflex-chat-0.0.1a4.tar.gz", hash = "sha256:c5323d3a2ef913e3b46a1b2ba97398d34b128083a7fe4a3bf1124227a72b23af"},
-    {file = "reflex_chat-0.0.1a4-py3-none-any.whl", hash = "sha256:502f6b5c706bc21ad5b193aaf416920fb9f5a6b55f823c9263c7207ab5200502"},
+    {file = "reflex-chat-0.0.1a6.tar.gz", hash = "sha256:798738867964079450f3092724f7bb1e2412f430d848bef8c03bc34144f1cb41"},
+    {file = "reflex_chat-0.0.1a6-py3-none-any.whl", hash = "sha256:c57a6fea9da637687a9902c4a94c6e7afb64824374570e15712d409b92839e53"},
 ]
 
 [package.dependencies]
-reflex = ">=0.4.2"
+reflex = ">=0.4.7"
 
 [package.extras]
 dev = ["build", "twine"]
@@ -4411,4 +4411,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "c80b311131320aad60813de3f39bca440e2e968d3b6a1b86edebb81a5f1a4070"
+content-hash = "ed4e1f9697f544a8f7aec0d52841173b86d40fcd18821de49e17a74105ce4345"

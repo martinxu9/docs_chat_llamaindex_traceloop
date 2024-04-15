@@ -43,7 +43,7 @@ async def process_question(chat):
     global query_engine
 
     # Workaround: chat component currently uses list of dicts, llama-index Pydantic base model
-    chat_history = [ChatMessage(**c) for c in chat.get_value(chat.messages)]
+    chat_history = [ChatMessage(**c) for c in chat.messages]
 
     # Start a new session.
     chat_engine = CondenseQuestionChatEngine.from_defaults(
@@ -52,15 +52,9 @@ async def process_question(chat):
         verbose=True,
     )
 
-    # Workaround: get the question, which is the last user message.
-    for message in chat.messages[::-1]:
-        if message["role"] == "user":
-            question = message["content"]
-            print(f"last question: {question}")
+    streaming_response = chat_engine.stream_chat(chat.last_user_message)
+    # Stream the results, yielding after every word.
+    for item in streaming_response.response_gen:
+        chat.append_to_response(item)
 
-            streaming_response = chat_engine.stream_chat(question)
-
-            # Stream the results, yielding after every word.
-            for item in streaming_response.response_gen:
-                chat.messages[-1]["content"] += item or ""
-                yield
+        yield
