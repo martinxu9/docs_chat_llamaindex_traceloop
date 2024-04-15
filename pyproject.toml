@@ -11,8 +11,8 @@ reflex = "^0.4.7"
 llama-index = "^0.10.28"
 traceloop-sdk = "^0.16.1"
 llama-index-vector-stores-weaviate = "^0.1.4"
-langchain = "^0.1.16"
 reflex-chat = "^0.0.1a6"
+langchain-text-splitters = "^0.0.1"
 
 
 [build-system]

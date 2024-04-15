@@ -1,5 +1,5 @@
 reflex>=0.4.7
-langchain
+langchain-text-splitters
 llama-index
 traceloop-sdk
 reflex-chat>=0.0.1a6
